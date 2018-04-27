@@ -17,6 +17,8 @@ class MaxCDN {
 	public $MaxCDNrws_url = 'https://rws.maxcdn.com';
 	
     private $consumer;
+
+    public $timeout = 60;
 	
 	public function __construct($alias, $key, $secret, $options=null) {
 		$this->alias  = $alias;
@@ -55,7 +57,7 @@ class MaxCDN {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER , TRUE);
 		
 		// set curl timeout
-		curl_setopt($ch, CURLOPT_TIMEOUT, 60); 
+		curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
 
 		// set curl custom request type if not standard
 		if ($method_type != "GET" && $method_type != "POST") {
